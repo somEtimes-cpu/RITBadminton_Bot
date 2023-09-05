@@ -11,7 +11,7 @@ import database_process
 from discord_member import Discord_Member
 
 
-TOKEN = 'MTE0MjEyMzcwNzkyMjM5OTM1Mw.GGDLt5.Sc5XJ8YN-pvWx613RNdPpATYqoUqL6R-5_hz4k'
+TOKEN = os.getenv("DISCORD_TOKEN")
 
 def run_discord_bot():
     owners=[176022438281347072]
