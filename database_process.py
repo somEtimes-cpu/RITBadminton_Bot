@@ -1,5 +1,5 @@
 import sqlite3
-from discord_member import Discord_Member
+from object_classes import Discord_Member
 import pandas as pd
 '''
 @dataclass
@@ -58,7 +58,7 @@ def delete_member(member_id: int):
 def find_member(member_id: int):
     conn = sqlite3.connect('Database/badminton_member.db')
     c = conn.cursor()
-    c.execute("SELECT * FROM registered_member")
+    c.execute("SELECT * FROM registered_member WHERE discord_id={member_id}".format(member_id=member_id))
     conn.commit()
     result = c.fetchall()
     return result
