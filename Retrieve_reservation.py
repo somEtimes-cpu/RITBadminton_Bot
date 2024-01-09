@@ -18,7 +18,7 @@ from object_classes import reserved_event
     
     
 
-def main():
+def retreive_reservations():
     driver = webdriver.Edge()
     driver.get('https://reserve.rit.edu/')
     WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.ID, "rit-shib-login-link"))).click()
@@ -84,7 +84,6 @@ def main():
             if not is_private:
                 driver.execute_script("arguments[0].scrollIntoView();", event)
                 driver.execute_script("arguments[0].click();", event)
-                #WebDriverWait(driver, 20).until((EC.element_to_be_clickable(event))).click()
                 element = WebDriverWait(driver, 20).until((EC.visibility_of_element_located((By.ID, "detailsContainer"))))
                 event_element = WebDriverWait(element, 20).until((EC.presence_of_element_located((By.ID, "event-name"))))
                 event_name = element.find_element(By.ID, "event-name").get_attribute('aria-label').split('Event Name')[1].strip()
@@ -102,34 +101,11 @@ def main():
     driver.save_screenshot(f"Reservations_files/reservations_{datetime.datetime.today().strftime('%Y-%m-%d')}.png")
     time.sleep(2)
     
+    return gymcourts
+    
     
    # write_file(gymcourts, gymCourt2_id, gymCourt3_id, gymCourt4_id, gymCourt5_id)
-    
-'''
-@dataclass
-class reserved_event():
-    event_name: str
-    starting_hr: str
-    ending_hr: str
-    starting_min: str
-    ending_min: str
-    starting_timez: str
-    ending_timez: str
-    starting_px: int
-'''
-'''
-def write_file(courts_events: dict, court2ID: int, court3ID: int, court4ID: int, court5ID: int):
-    for key in courts_events.keys():
-        courts_events.get(key).sort(key=lambda x: x.starting_px)    
 
-    with open (file=f"Reservations_files/reservations_{datetime.datetime.today().strftime('%Y-%m-%d')}.txt", mode='w', encoding='utf-8') as f:
-        f.write(f"Reservation for {datetime.datetime.today().strftime('%Y-%m-%d')}\n")
-        court2_str = "Court 2: "
-        events_str = ""
-        '''
-            
-        
-    
 
 if __name__ == "__main__":
-    main()
+    retreive_reservations()

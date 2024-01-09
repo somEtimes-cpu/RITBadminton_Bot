@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\.gitignore",
+    "\\cogs"
   ],
-  "SelectedNode": "\\bot.py",
+  "SelectedNode": "\\cogs\\register.py",
   "PreviewInSolutionExplorer": false
 }
